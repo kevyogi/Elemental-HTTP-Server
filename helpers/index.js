@@ -56,7 +56,7 @@ function sendError(req, res, status, body){
     res.writeHead(status, {
       'Content-Type': 'text/plain'
     });
-    res.write('You\'re terrible. Make better requests');
+    res.write(body);
     res.end();
   }
 }

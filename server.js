@@ -18,6 +18,10 @@ const server = http.createServer((req, res) => {
     case "POST":
       handlers.postRequest(req, res);
       break;
+
+    case "PUT":
+      handlers.putRequest(req, res);
+      break;
   }
 
 });
