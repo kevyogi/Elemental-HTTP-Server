@@ -104,26 +104,30 @@ let index1 = `<!DOCTYPE html>
 <body>
   <h1>The Elements</h1>
   <h2>These are all the known elements.</h2>`
-let index2 = `<h3>These are ${elementArray.length+2}</h3>`
-let index3 = `<ol>
-    <li>
-      <a href="/hydrogen.html">Hydrogen</a>
-    </li>
-    <li>
-      <a href="/helium.html">Helium</a>
-    </li>`
+let index3 = `<ol>`
 let index4 = `</ol>
 </body>
 </html>`
 
-function addToIndex(element){
-  let newString = "";
-  elementArray.forEach((element) => {
-    newString += `\n<li><a href="/${element.toLowerCase()}.html">${element}</a>
+function addToIndex(){
+  let indexString = "";
+  let count = 0;
+  fs.readdir('./public', (err, files) => {
+    for(let i = 0; i < files.length; i++){
+      if(files[i] !== '.DS_Store' && files[i] !== '.keep' && files[i] !== '404.html' && files[i] !== 'css' && files[i] !== 'index.html'){
+        console.log(files[i]);
+        count++;
+        let firstLetter = files[i].split(".")[0].split("")[0].toUpperCase();
+        let restOfWord = files[i].split(".")[0].substring(1);
+        let capitalizedWord = firstLetter.concat(restOfWord);
+        indexString += `\n<li><a href="/${files[i]}">${capitalizedWord}</a>
 </li>\n`
-  })
-  let newIndex = index1.concat(index2, index3, newString, index4);
-  fs.writeFile('./public/index.html', newIndex, (err) => {
-    console.log('new index created');
+      }
+    }
+    let index2 = `<h3>These are ${count}</h3>`
+    let newIndex = index1.concat(index2, index3, indexString, index4);
+    fs.writeFile('./public/index.html', newIndex, (err) => {
+      console.log('new index created');
+    });
   });
 }
