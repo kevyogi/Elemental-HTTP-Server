@@ -20,20 +20,17 @@ const server = http.createServer((req, res) => {
       break;
   }
 
-  // let body = [];
-  // req.on('data', (data) => {
-  //   body.push(data);
-  // }).on('end', () => {
-  //   body = Buffer.concat(body).toString();
-
-  // });
-
 });
 
 server.listen(8080, () => {
   console.log('listening on port 8080');
 });
 
-// fs.stat('./public/hem.html', (err, stats) => {
-//     console.log(stats);
+// fs.readdir('./public', (err, files) => {
+//   console.log(files);
+//   let test = files.filter((file) => {
+//     return file !== '404.html'
+//   })
+//   console.log(test);
 // });
+
