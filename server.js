@@ -26,11 +26,3 @@ server.listen(8080, () => {
   console.log('listening on port 8080');
 });
 
-// fs.readdir('./public', (err, files) => {
-//   console.log(files);
-//   let test = files.filter((file) => {
-//     return file !== '404.html'
-//   })
-//   console.log(test);
-// });
-
